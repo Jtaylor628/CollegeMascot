@@ -35,7 +35,7 @@ namespace Lab1CollegeMascot {
 			}
 		}
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
-	private: System::Windows::Forms::Button^  button1;
+
 	private: System::Windows::Forms::Button^  button2;
 
 	protected:
@@ -54,7 +54,6 @@ namespace Lab1CollegeMascot {
 		void InitializeComponent(void)
 		{
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -68,23 +67,13 @@ namespace Lab1CollegeMascot {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &MyForm::pictureBox1_Click);
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(12, 68);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Show";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
-			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(12, 97);
+			this->button2->Location = System::Drawing::Point(12, 51);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 2;
-			this->button2->Text = L"Hide";
+			this->button2->Text = L"Show / Hide";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
@@ -95,10 +84,10 @@ namespace Lab1CollegeMascot {
 			this->ClientSize = System::Drawing::Size(709, 534);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::MyForm_Paint);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -119,13 +108,13 @@ namespace Lab1CollegeMascot {
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		
 		pictureBox1->Visible = !pictureBox1->Visible;
-		pictureBox1->Visible = !pictureBox1->Visible;
+		//pictureBox1->Visible = !pictureBox1->Visible;
 		//pictureBox1->Visible = !pictureBox1->Visible;
 		//System::Threading::Thread::Sleep(1500);
 		//g->DrawImage(CollegeMascotBmp, 0, 0);
 		//pictureBox1->Show();
 		//pictureBox1->Invalidate();
-		//pictureBox1->Refresh();
+		Refresh();
 		
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -134,6 +123,9 @@ namespace Lab1CollegeMascot {
 
 
 private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	g->DrawImage(CollegeMascotBmp, 0, 0);
 }
 };
 }
